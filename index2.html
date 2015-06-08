@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="base.css" rel="stylesheet" />
+<link href='mapbox.css' rel='stylesheet' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id='map'>
+  </div>
+  <div id='selections' class="selections">
+    <a href='#' class="show">Choose which leagues to display</a>
+    <div class='content'>
+      <a href='#' class="hide">Hide</a>
+      <div id="toggles">
+      </div>
+    </div>
+  </div>
+  <div id='loading'>
+  </div>
+  <div id='selected'>
+    <h1>Do you support your local team?</h1>
+  </div>
+  <div id='about'>
+    <a href='#' class="show">About</a>
+    <p class='content'>
+      Find out the "catchment area" for each Scottish football team. Created by <a href="http://twitter.com/splstats">SPLstats</a> based on the UK Supermarkets map designed by <a href="http://chriszetter.com">Chris Zetter</a>. Powered by data from <a href="http://www.superlocate.net/">SuperLocate</a>, maps copyright
+      <a href='https://www.mapbox.com/about/maps/' target='_blank'>Mapbox and OpenStreetMap</a>.
+      <a href='#' class="hide">Hide</a>
+    </div>
+  </div>
+  <script src="d3.min.js"></script>
+  <script src="leaflet.js"></script>
+  <script src="mapbox.js"></script>
+  <script src="voronoi_map.js"></script>
+  <script>
+    map = L.mapbox.map('map', 'zetter.i73ka9hn')
+      .fitBounds([[60 , -8], [52 , 0]]);
+    url = 'football.csv';
+    initialSelection = d3.set(['Premiership', 'Championship', 'League 1', 'League 2']);
+    voronoiMap(map, url, initialSelection);
+  </script>
+</body>
+</html>
